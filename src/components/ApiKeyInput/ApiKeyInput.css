@@ -1,0 +1,93 @@
+.api-key-section {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.api-key-section h3 {
+  margin-bottom: 15px;
+  color: #1a73e8;
+}
+
+.api-key-section p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.api-key-section ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.api-key-section li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.api-key-section a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.api-key-section a:hover {
+  text-decoration: underline;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-group input.error {
+  border-color: #dc3545;
+}
+
+.input-group button {
+  padding: 8px 16px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.input-group button:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+
+.input-group button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.model-info {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.api-key-section strong {
+  color: #1a73e8;
+  font-weight: 600;
+} 

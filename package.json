@@ -1,0 +1,34 @@
+{
+  "name": "youtube-summarizer",
+  "version": "1.0.0",
+  "description": "AI-powered YouTube video summarization Chrome extension",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "@types/har-format": "^1.2.16",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "canvas": "^3.1.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

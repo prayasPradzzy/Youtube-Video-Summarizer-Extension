@@ -1,0 +1,115 @@
+@import './styles/fonts.css';
+
+body {
+  width: 400px;
+  min-height: 300px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  color: var(--color-text-body);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-darker);
+  font-weight: var(--font-bold);
+  margin: 0 0 var(--spacing-md) 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.7;
+}
+
+button {
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.popup-container {
+  padding: var(--spacing-md);
+  background-color: var(--color-background);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--color-text-light);
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+}
+
+.loading::after {
+  content: "...";
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: "."; }
+  40% { content: ".."; }
+  60% { content: "..."; }
+  80%, 100% { content: ""; }
+}
+
+.error {
+  color: #e74c3c;
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  background-color: #fdf3f2;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #fbd5d5;
+}
+
+.no-video {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-light);
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-md);
+}
+
+#root {
+  width: 400px;
+  min-height: 300px;
+  max-height: 600px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) var(--color-surface);
+}
+
+#root::-webkit-scrollbar {
+  width: 8px;
+}
+
+#root::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+#root::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-lg);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} 
