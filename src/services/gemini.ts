@@ -6,9 +6,10 @@ export class GeminiService {
   private apiKey: string | null = null;
   private model: string | null = null;
   private readonly BASE_URL = 'https://generativelanguage.googleapis.com/v1';
-  private readonly PREFERRED_MODELS = ['gemini-2.0-flash-lite', 'gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-pro'];
+  private readonly PREFERRED_MODELS = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'];
   private readonly MAX_RETRIES = 3;
-  private readonly INITIAL_RETRY_DELAY = 1000;
+  private readonly INITIAL_RETRY_DELAY = 2000; // Increased from 1000ms to help with rate limits
+  private readonly CHUNK_DELAY = 1500; // Delay between processing chunks to avoid rate limits
   private readonly MAX_CHUNK_LENGTH = 30000; // Gemini can handle much larger chunks
 
   private constructor() {}
@@ -145,12 +146,23 @@ export class GeminiService {
       const cleanedTranscript = this.cleanTranscript(transcript);
       const chunks = this.splitIntoChunks(cleanedTranscript, this.MAX_CHUNK_LENGTH);
       
-      // Process chunks sequentially
+      console.log(`[YouTube Summarizer] Processing ${chunks.length} chunk(s)`);
+      
+      // Process chunks sequentially with delay to avoid rate limits
       const summaries: string[] = [];
-      for (const chunk of chunks) {
+      for (let i = 0; i < chunks.length; i++) {
+        const chunk = chunks[i];
+        console.log(`[YouTube Summarizer] Processing chunk ${i + 1}/${chunks.length}`);
+        
         const summary = await this.summarizeChunkWithRetry(chunk);
         if (summary) {
           summaries.push(summary);
+        }
+        
+        // Add delay between chunks (except after the last one)
+        if (i < chunks.length - 1) {
+          console.log(`[YouTube Summarizer] Waiting ${this.CHUNK_DELAY}ms before next chunk...`);
+          await new Promise(resolve => setTimeout(resolve, this.CHUNK_DELAY));
         }
       }
 
@@ -241,7 +253,7 @@ export class GeminiService {
             await new Promise(resolve => setTimeout(resolve, delay));
             return this.summarizeChunkWithRetry(text, attempt + 1, isFinalSummary);
           }
-          throw new Error('Rate limit exceeded. Please try again later.');
+          throw new Error('Rate limit exceeded. The free tier has strict limits (15 requests/minute). Please wait a minute and try again, or upgrade to a paid tier for higher limits.');
         }
         
         throw new Error(errorData.error?.message || 'Failed to generate summary');

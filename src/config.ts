@@ -1,6 +1,6 @@
 export const config = {
   gemini: {
-    model: 'gemini-2.0-flash-lite',
+    model: 'gemini-2.5-flash', // Updated to newest, fastest model
     maxOutputTokens: 1024,
     temperature: 0.7,
     topK: 40,

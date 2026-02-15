@@ -94,6 +94,19 @@ graph TD
 ## Overview
 This Chrome extension uses a modern architecture to summarize YouTube videos using the Gemini AI model. Here's how the different components work together:
 
+## 📚 Important Guides
+
+- **[QUICK_START.md](QUICK_START.md)** - Quick setup and dependency updates
+- **[DEPENDENCY_UPDATE_GUIDE.md](DEPENDENCY_UPDATE_GUIDE.md)** - Comprehensive dependency management
+- **[RATE_LIMITS_GUIDE.md](RATE_LIMITS_GUIDE.md)** - ⭐ Understanding & fixing rate limit errors
+- **[architecture.md](architecture.md)** - Detailed architecture documentation
+
+### Having Issues?
+
+**"Rate limit exceeded" error?** → See [RATE_LIMITS_GUIDE.md](RATE_LIMITS_GUIDE.md)  
+**Need to update dependencies?** → See [QUICK_START.md](QUICK_START.md)  
+**Extension not working?** → Check the Debugging section below
+
 ## Core Components
 
 ### 1. Extension Entry Points
@@ -212,23 +225,71 @@ This Chrome extension uses a modern architecture to summarize YouTube videos usi
 
 ## Development Workflow
 
-1. **Building**:
+### Quick Setup & Updates
+
+**New to the project or returning after a while?**
+
+```bash
+# Quick start - updates dependencies and tests build
+node scripts/quick-start-updates.js
+```
+
+**Available Scripts:**
+- `npm run build` - Production build
+- `npm run dev` - Development build with watch mode
+- `npm run type-check` - TypeScript type checking
+- `npm run lint` - Lint TypeScript/React code
+- `npm run lint:fix` - Auto-fix linting issues
+- `npm run generate-icons` - Generate extension icons
+- `npm run clean` - Remove build directory
+
+**Maintenance Scripts:**
+- `node scripts/update-dependencies.js` - Update safe dependencies
+- `node scripts/cleanup-project.js` - Clean up project files
+- `node scripts/generate-icons.js` - Generate icon files
+
+📖 **See [QUICK_START.md](QUICK_START.md) for dependency updates**  
+📖 **See [DEPENDENCY_UPDATE_GUIDE.md](DEPENDENCY_UPDATE_GUIDE.md) for detailed update info**
+
+### Building
+
+1. **Development Build**:
    ```bash
-   npm run build
+   npm run dev
    ```
    - Compiles TypeScript
    - Bundles with webpack
+   - Watches for changes
+   - Source maps enabled
+
+2. **Production Build**:
+   ```bash
+   npm run build
+   ```
+   - Optimized bundle
    - Generates dist/ directory
+   - Ready for Chrome Web Store
 
-2. **Testing**:
-   - Load unpacked extension
-   - Navigate to YouTube
+### Testing
+
+1. **Load Extension**:
+   - Open `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select `dist/` folder
+
+2. **Test Functionality**:
+   - Navigate to a YouTube video
    - Click extension icon
+   - Add Gemini API key
+   - Try summarizing
 
-3. **Debugging**:
-   - Use Chrome DevTools
-   - Check background script console
-   - Monitor network requests
+### Debugging
+
+- **Background Script**: `chrome://extensions/` → Extension details → Inspect service worker
+- **Popup**: Right-click extension icon → Inspect popup
+- **Content Script**: Open DevTools on YouTube page
+- **Console**: Check for error messages in all contexts
 
 ## Best Practices
 
